@@ -9,6 +9,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import requests
 import argparse
 from socket import gethostbyname, gaierror
+import os
 
 def enum_urls(urls):
     print("(+) Enumerating URLs")
@@ -65,6 +66,8 @@ def main():
     args = parser.parse_args()
 
     urls = args.urls
+    if not os.path.exists('snapshots'):
+        os.makedirs('snapshots')
     enum_urls(urls)
 
     print("(+) Complete!")
